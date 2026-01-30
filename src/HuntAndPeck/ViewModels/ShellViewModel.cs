@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using HuntAndPeck.NativeMethods;
 using HuntAndPeck.Services.Interfaces;
 using Application = System.Windows.Application;
+using HuntAndPeck.Models;
 
 namespace HuntAndPeck.ViewModels
 {

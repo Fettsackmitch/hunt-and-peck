@@ -91,6 +91,7 @@
     <Compile Include="Models\DebugHint.cs" />
     <Compile Include="Models\Hint.cs" />
     <Compile Include="Models\HintSession.cs" />
+    <Compile Include="Models\HotKey.cs" />
     <Compile Include="Models\UiAutomationExpandCollapseHint.cs" />
     <Compile Include="Models\UiAutomationFocusHint.cs" />
     <Compile Include="Models\UiAutomationInvokeHint.cs" />

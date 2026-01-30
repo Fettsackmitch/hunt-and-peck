@@ -2,6 +2,7 @@
 using System;
 using System.Windows.Forms;
 using HuntAndPeck.Services.Interfaces;
+using HuntAndPeck.Models;
 
 namespace HuntAndPeck.Services
 {
