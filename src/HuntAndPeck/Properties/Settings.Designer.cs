@@ -9,31 +9,66 @@
 //------------------------------------------------------------------------------
 
 namespace HuntAndPeck.Properties {
-
-
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.1.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.14.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
+        
         public static Settings Default {
             get {
                 return defaultInstance;
             }
         }
-
-    [global::System.Configuration.UserScopedSettingAttribute()]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Configuration.DefaultSettingValueAttribute("14")]
-    public string FontSize {
-        get {
-            return ((string)(this["FontSize"]));
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("14")]
+        public string FontSize {
+            get {
+                return ((string)(this["FontSize"]));
+            }
+            set {
+                this["FontSize"] = value;
+            }
         }
-        set {
-            this["FontSize"] = value;
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Alt+Oemcomma")]
+        public string HotKeyText {
+            get {
+                return ((string)(this["HotKeyText"]));
+            }
+            set {
+                this["HotKeyText"] = value;
+            }
         }
-    }
-
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Alt+Shift+Oemcomma")]
+        public string TaskbarHotKeyText {
+            get {
+                return ((string)(this["TaskbarHotKeyText"]));
+            }
+            set {
+                this["TaskbarHotKeyText"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Control+Shift+Oemcomma")]
+        public string DebugHotKeyText {
+            get {
+                return ((string)(this["DebugHotKeyText"]));
+            }
+            set {
+                this["DebugHotKeyText"] = value;
+            }
+        }
     }
 }

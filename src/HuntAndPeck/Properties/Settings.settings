@@ -7,5 +7,14 @@
     <Setting Name="FontSize" Type="System.String" Scope="User">
       <Value Profile="(Default)">14</Value>
     </Setting>
+    <Setting Name="HotKeyText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Alt+Oemcomma</Value>
+    </Setting>
+    <Setting Name="TaskbarHotKeyText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Alt+Shift+Oemcomma</Value>
+    </Setting>
+    <Setting Name="DebugHotKeyText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Control+Shift+Oemcomma</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
