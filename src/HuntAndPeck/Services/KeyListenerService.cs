@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Forms;
 using HuntAndPeck.Services.Interfaces;
+using HuntAndPeck.Models;
 
 namespace HuntAndPeck.Services
 {
