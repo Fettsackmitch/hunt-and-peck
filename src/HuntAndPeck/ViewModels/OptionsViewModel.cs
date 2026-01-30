@@ -11,6 +11,10 @@ namespace HuntAndPeck.ViewModels
         {
             DisplayName = "Options";
             FontSize = Settings.Default.FontSize;
+            HotKeyText = Settings.Default.HotKeyText;
+            TaskbarHotKeyText = Settings.Default.TaskbarHotKeyText;
+            DebugHotKeyText = Settings.Default.DebugHotKeyText;
+            
             Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
         }
 
@@ -29,6 +33,54 @@ namespace HuntAndPeck.ViewModels
                     _fontSize = value;
                     OnPropertyChanged("FontSize");
                     Settings.Default.FontSize = value;
+                    Settings.Default.Save();
+                }
+            }
+        }
+
+        private string _HotKeyText; 
+        public string HotKeyText
+        {
+            get { return _HotKeyText; }
+            set
+            {
+                if (_HotKeyText != value)
+                {
+                    _HotKeyText = value;
+                    OnPropertyChanged("HotKeyText");
+                    Settings.Default.HotKeyText = value;
+                    Settings.Default.Save();
+                }
+            }
+        }
+
+        private string _TaskbarHotKeyText;
+        public string TaskbarHotKeyText
+        {
+            get { return _TaskbarHotKeyText; }
+            set
+            {
+                if (_TaskbarHotKeyText != value)
+                {
+                    _TaskbarHotKeyText = value;
+                    OnPropertyChanged("TaskbarHotKeyText");
+                    Settings.Default.TaskbarHotKeyText = value;
+                    Settings.Default.Save();
+                }
+            }
+        }   
+
+        private string _DebugHotKeyText;    
+        public string DebugHotKeyText
+        {
+            get { return _DebugHotKeyText; }
+            set
+            {
+                if (_DebugHotKeyText != value)
+                {
+                    _DebugHotKeyText = value;
+                    OnPropertyChanged("DebugHotKeyText");
+                    Settings.Default.DebugHotKeyText = value;
                     Settings.Default.Save();
                 }
             }

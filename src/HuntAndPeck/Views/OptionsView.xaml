@@ -1,25 +1,43 @@
 ﻿<Window x:Class="HuntAndPeck.Views.OptionsView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="OptionsView" Height="300" Width="300"
+        Title="OptionsView" Height="300" Width="400"
         WindowStartupLocation="CenterScreen">
     <TabControl TabStripPlacement="Left">
         <TabItem Header="Overlay">
             <TabItem.Content>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
                 </Grid>
             </TabItem.Content>
         </TabItem>
         <TabItem Header="Keyboard">
             <TabItem.Content>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                </Grid>
+                <StackPanel Margin="10" Orientation="Vertical" VerticalAlignment="Top" >
+
+                    <StackPanel Orientation="Horizontal" Margin="0,2,0,8">
+                        <Label Width="120" VerticalAlignment="Center">Overlay HotKey:</Label>
+                        <TextBox Width="200"
+                                 Text="{Binding HotKeyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 ToolTip="Format: Modifier+Key e.g. 'Alt+comma'"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,2,0,8">
+                        <Label Width="120" VerticalAlignment="Center">Taskbar HotKey:</Label>
+                        <TextBox Width="200"
+                                 Text="{Binding TaskbarHotKeyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 ToolTip="Format: Modifier+Key e.g. 'Alt+Shift+comma'"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
+                        <Label Width="120" VerticalAlignment="Center">Debug HotKey:</Label>
+                        <TextBox Width="200"
+                                 Text="{Binding DebugHotKeyText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 ToolTip="Format: Modifier+Key e.g. 'Control+Shift+comma'"/>
+                    </StackPanel>
+                </StackPanel>
             </TabItem.Content>
         </TabItem>
         <TabItem Header="FontSize">
