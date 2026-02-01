@@ -197,3 +197,4 @@ FakesAssemblies/
 src/tools/*
 !src/tools/packages.config
 src/Dist
+.github/copilot-instructions.md
