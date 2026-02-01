@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Windows.Forms;
 using HuntAndPeck.NativeMethods;
 using HuntAndPeck.Services.Interfaces;
 using Application = System.Windows.Application;
+using HuntAndPeck.Models;
 
 namespace HuntAndPeck.ViewModels
 {
@@ -14,6 +14,7 @@ namespace HuntAndPeck.ViewModels
         private readonly IHintLabelService _hintLabelService;
         private readonly IHintProviderService _hintProviderService;
         private readonly IDebugHintProviderService _debugHintProviderService;
+        private readonly IKeyListenerService _keyListener;
 
         public ShellViewModel(
             Action<OverlayViewModel> showOverlay,
@@ -28,36 +29,37 @@ namespace HuntAndPeck.ViewModels
             _showDebugOverlay = showDebugOverlay;
             _showOptions = showOptions;
             _hintLabelService = hintLabelService;
-            var keyListener1 = keyListener;
             _hintProviderService = hintProviderService;
             _debugHintProviderService = debugHintProviderService;
-
-            keyListener1.HotKey = new HotKey
-            {
-                Keys = Keys.OemSemicolon,
-                Modifier = KeyModifier.Alt
-            };
-
-            keyListener1.TaskbarHotKey = new HotKey
-            {
-                Keys = Keys.OemSemicolon,
-                Modifier = KeyModifier.Control
-            };
-
-#if DEBUG
-            keyListener1.DebugHotKey = new HotKey
-            {
-                Keys = Keys.OemSemicolon,
-                Modifier = KeyModifier.Alt | KeyModifier.Shift
-            };
-#endif
-
-            keyListener1.OnHotKeyActivated += _keyListener_OnHotKeyActivated;
-            keyListener1.OnTaskbarHotKeyActivated += _keyListener_OnTaskbarHotKeyActivated;
-            keyListener1.OnDebugHotKeyActivated += _keyListener_OnDebugHotKeyActivated;
-
+            _keyListener = keyListener;
             ShowOptionsCommand = new DelegateCommand(ShowOptions);
             ExitCommand = new DelegateCommand(Exit);
+        }
+
+        public void InitHotKeys()
+        {
+            if (HotKey.TryParse(Properties.Settings.Default.HotKeyText, out HotKey activeWindowHotKey)
+                && activeWindowHotKey.IsValid())
+            {
+                _keyListener.HotKey = activeWindowHotKey;
+            }
+
+            if (HotKey.TryParse(Properties.Settings.Default.TaskbarHotKeyText, out HotKey taskbarHotKey)
+                && taskbarHotKey.IsValid())
+            {
+                _keyListener.TaskbarHotKey = taskbarHotKey;
+            }
+#if DEBUG
+            if (HotKey.TryParse(Properties.Settings.Default.DebugHotKeyText, out HotKey debugHotKey)
+                && debugHotKey.IsValid())
+            {
+                _keyListener.DebugHotKey = debugHotKey;
+            }
+#endif
+            _keyListener.OnHotKeyActivated += _keyListener_OnHotKeyActivated;
+            _keyListener.OnTaskbarHotKeyActivated += _keyListener_OnTaskbarHotKeyActivated;
+            _keyListener.OnDebugHotKeyActivated += _keyListener_OnDebugHotKeyActivated;
+            _keyListener.StartListening();
         }
 
         public DelegateCommand ShowOptionsCommand { get; }
@@ -102,7 +104,9 @@ namespace HuntAndPeck.ViewModels
         public void ShowOptions()
         {
             var vm = new OptionsViewModel();
+            _keyListener.StopListening();
             _showOptions(vm);
+            InitHotKeys();
         }
     }
 }

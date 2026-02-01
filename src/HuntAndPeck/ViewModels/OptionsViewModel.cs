@@ -1,7 +1,5 @@
 ﻿using HuntAndPeck.Properties;
-using System;
 using System.ComponentModel;
-using System.Windows;
 
 namespace HuntAndPeck.ViewModels
 {
@@ -11,7 +9,21 @@ namespace HuntAndPeck.ViewModels
         {
             DisplayName = "Options";
             FontSize = Settings.Default.FontSize;
+            HotKeyText = Settings.Default.HotKeyText;
+            TaskbarHotKeyText = Settings.Default.TaskbarHotKeyText;
+            DebugHotKeyText = Settings.Default.DebugHotKeyText;
+            
             Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
+        }
+
+        public void Destroy()
+        {
+            Settings.Default.Save();
+        }
+
+        public void SaveSettings()
+        {
+            Settings.Default.Save();
         }
 
         public string DisplayName { get; set; }
@@ -29,7 +41,51 @@ namespace HuntAndPeck.ViewModels
                     _fontSize = value;
                     OnPropertyChanged("FontSize");
                     Settings.Default.FontSize = value;
-                    Settings.Default.Save();
+                }
+            }
+        }
+
+        private string _HotKeyText; 
+        public string HotKeyText
+        {
+            get { return _HotKeyText; }
+            set
+            {
+                if (HotKey.TryParse(value, out HotKey hotKey))
+                {
+                    _HotKeyText = hotKey.ToString();
+                    OnPropertyChanged("HotKeyText");
+                    Settings.Default.HotKeyText = hotKey.ToString();
+                }
+            }
+        }
+
+        private string _TaskbarHotKeyText;
+        public string TaskbarHotKeyText
+        {
+            get { return _TaskbarHotKeyText; }
+            set
+            {
+                if (HotKey.TryParse(value, out HotKey hotKey))
+                {
+                    _TaskbarHotKeyText = hotKey.ToString();
+                    OnPropertyChanged("TaskbarHotKeyText");
+                    Settings.Default.TaskbarHotKeyText = hotKey.ToString();
+                }
+            }
+        }   
+
+        private string _DebugHotKeyText;    
+        public string DebugHotKeyText
+        {
+            get { return _DebugHotKeyText; }
+            set
+            {
+                if (HotKey.TryParse(value, out HotKey hotKey))
+                {
+                    _DebugHotKeyText = hotKey.ToString();
+                    OnPropertyChanged("DebugHotKeyText");
+                    Settings.Default.DebugHotKeyText = hotKey.ToString();
                 }
             }
         }
