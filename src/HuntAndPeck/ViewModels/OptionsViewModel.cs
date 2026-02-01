@@ -1,5 +1,6 @@
 ﻿using HuntAndPeck.Properties;
 using System.ComponentModel;
+using HuntAndPeck.Models;
 
 namespace HuntAndPeck.ViewModels
 {
