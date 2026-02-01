@@ -17,6 +17,16 @@ namespace HuntAndPeck.ViewModels
             Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
         }
 
+        public void Destroy()
+        {
+            Settings.Default.Save();
+        }
+
+        public void SaveSettings()
+        {
+            Settings.Default.Save();
+        }
+
         public string DisplayName { get; set; }
 
         private string _fontSize;
@@ -32,7 +42,6 @@ namespace HuntAndPeck.ViewModels
                     _fontSize = value;
                     OnPropertyChanged("FontSize");
                     Settings.Default.FontSize = value;
-                    Settings.Default.Save();
                 }
             }
         }
@@ -43,12 +52,11 @@ namespace HuntAndPeck.ViewModels
             get { return _HotKeyText; }
             set
             {
-                if (_HotKeyText != value)
+                if (HotKey.TryParse(value, out HotKey hotKey))
                 {
-                    _HotKeyText = value;
+                    _HotKeyText = hotKey.ToString();
                     OnPropertyChanged("HotKeyText");
-                    Settings.Default.HotKeyText = value;
-                    Settings.Default.Save();
+                    Settings.Default.HotKeyText = hotKey.ToString();
                 }
             }
         }
@@ -59,12 +67,11 @@ namespace HuntAndPeck.ViewModels
             get { return _TaskbarHotKeyText; }
             set
             {
-                if (_TaskbarHotKeyText != value)
+                if (HotKey.TryParse(value, out HotKey hotKey))
                 {
-                    _TaskbarHotKeyText = value;
+                    _TaskbarHotKeyText = hotKey.ToString();
                     OnPropertyChanged("TaskbarHotKeyText");
-                    Settings.Default.TaskbarHotKeyText = value;
-                    Settings.Default.Save();
+                    Settings.Default.TaskbarHotKeyText = hotKey.ToString();
                 }
             }
         }   
@@ -75,12 +82,11 @@ namespace HuntAndPeck.ViewModels
             get { return _DebugHotKeyText; }
             set
             {
-                if (_DebugHotKeyText != value)
+                if (HotKey.TryParse(value, out HotKey hotKey))
                 {
-                    _DebugHotKeyText = value;
+                    _DebugHotKeyText = hotKey.ToString();
                     OnPropertyChanged("DebugHotKeyText");
-                    Settings.Default.DebugHotKeyText = value;
-                    Settings.Default.Save();
+                    Settings.Default.DebugHotKeyText = hotKey.ToString();
                 }
             }
         }
