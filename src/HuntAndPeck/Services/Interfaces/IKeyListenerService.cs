@@ -12,6 +12,10 @@ namespace HuntAndPeck.Services.Interfaces
         event EventHandler OnTaskbarHotKeyActivated;
         event EventHandler OnDebugHotKeyActivated;
 
+        bool IsListening { get; }
+        void StartListening();
+        void StopListening();
+
         HotKey TaskbarHotKey { get; set; }
         HotKey HotKey { get; set; }
         HotKey DebugHotKey { get; set; }
