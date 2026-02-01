@@ -88,6 +88,7 @@ namespace HuntAndPeck
                     _hintProviderService,
                     _hintProviderService,
                     _keyListenerService);
+                shellViewModel.InitHotKeys();
 
                 var shellView = new ShellView
                 {
