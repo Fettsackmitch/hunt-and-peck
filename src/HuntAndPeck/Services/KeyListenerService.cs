@@ -78,7 +78,7 @@ namespace HuntAndPeck.Services
                 User32.UnregisterHotKey(Handle, hotKey.RegistrationId);
             }
 
-            hotKey.RegistrationId = _hotkeyIdCounter++;
+            hotKey.RegistrationId = 1 + _hotkeyIdCounter++;
             User32.RegisterHotKey(Handle, hotKey.RegistrationId, (uint)hotKey.Modifier, (uint)hotKey.Keys);
         }
 

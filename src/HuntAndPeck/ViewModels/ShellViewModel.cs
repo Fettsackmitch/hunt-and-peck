@@ -49,13 +49,13 @@ namespace HuntAndPeck.ViewModels
             {
                 _keyListener.TaskbarHotKey = taskbarHotKey;
             }
-#if DEBUG
+
             if (HotKey.TryParse(Properties.Settings.Default.DebugHotKeyText, out HotKey debugHotKey)
                 && debugHotKey.IsValid())
             {
                 _keyListener.DebugHotKey = debugHotKey;
             }
-#endif
+
             _keyListener.OnHotKeyActivated += _keyListener_OnHotKeyActivated;
             _keyListener.OnTaskbarHotKeyActivated += _keyListener_OnTaskbarHotKeyActivated;
             _keyListener.OnDebugHotKeyActivated += _keyListener_OnDebugHotKeyActivated;
