@@ -1,0 +1,9 @@
+<Project>
+
+  <PropertyGroup>
+    <Version>1.0.0.0</Version>
+    <Product>HuntAndPeck</Product>
+    <Copyright>Copyright Zachary Sims</Copyright>
+  </PropertyGroup>
+
+</Project>
