@@ -194,7 +194,5 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
-src/tools/*
-!src/tools/packages.config
 src/Dist
 .github/copilot-instructions.md

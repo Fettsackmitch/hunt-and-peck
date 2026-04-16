@@ -1,5 +1,7 @@
 ﻿using HuntAndPeck.NativeMethods;
 using System;
+using System.ComponentModel;
+using System.Globalization;
 using System.Windows.Forms;
 using HuntAndPeck.Services.Interfaces;
 
@@ -39,6 +41,7 @@ namespace HuntAndPeck.Services
         /// Gets/sets the current hotkey
         /// </summary>
         /// <remarks>Changing this will cause the current hotkey to be unregistered</remarks>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public HotKey HotKey
         {
             get
@@ -56,6 +59,7 @@ namespace HuntAndPeck.Services
         /// Gets/sets the current task bar hotkey
         /// </summary>
         /// <remarks>Changing this will cause the current hotkey to be unregistered</remarks>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public HotKey TaskbarHotKey
         {
             get
@@ -69,6 +73,7 @@ namespace HuntAndPeck.Services
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public HotKey DebugHotKey
         {
             get
