@@ -1,9 +1,14 @@
-﻿using HuntAndPeck.NativeMethods;
+using HuntAndPeck.NativeMethods;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Forms;
+using HuntAndPeck.Models;
+using HuntAndPeck.NativeMethods;
 using HuntAndPeck.Services.Interfaces;
+using System;
+using System.Globalization;
+using System.Windows.Forms;
 
 namespace HuntAndPeck.Services
 {
@@ -22,6 +27,46 @@ namespace HuntAndPeck.Services
         private HotKey _taskbarHotKey;
         private HotKey _debugHotKey;
 
+        private bool _IsListening = true;
+        public bool IsListening
+        {
+            get
+            {
+                return _IsListening;
+            }
+        }
+
+        public void StartListening()
+        {
+            if (_IsListening)
+                return;
+
+            ReRegisterHotKey(_hotKey);
+            ReRegisterHotKey(_taskbarHotKey);
+            ReRegisterHotKey(_debugHotKey);
+            _IsListening = true;
+        }
+
+        public void StopListening()
+        {
+            if (!_IsListening)
+                return;
+            
+            if (_hotKey != null && _hotKey.RegistrationId > 0)
+            {
+                User32.UnregisterHotKey(Handle, _hotKey.RegistrationId);
+            }
+            if (_taskbarHotKey != null && _taskbarHotKey.RegistrationId > 0)
+            {
+                User32.UnregisterHotKey(Handle, _taskbarHotKey.RegistrationId);
+            }
+            if (_debugHotKey != null && _debugHotKey.RegistrationId > 0)
+            {
+                User32.UnregisterHotKey(Handle, _debugHotKey.RegistrationId);
+            }
+            _IsListening = false;
+        }
+
         /// <summary>
         /// Re-registers the current hotkey, unregistering any previous key
         /// </summary>
@@ -33,7 +78,7 @@ namespace HuntAndPeck.Services
                 User32.UnregisterHotKey(Handle, hotKey.RegistrationId);
             }
 
-            hotKey.RegistrationId = _hotkeyIdCounter++;
+            hotKey.RegistrationId = 1 + _hotkeyIdCounter++;
             User32.RegisterHotKey(Handle, hotKey.RegistrationId, (uint)hotKey.Modifier, (uint)hotKey.Keys);
         }
 

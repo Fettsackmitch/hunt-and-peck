@@ -1,20 +1,8 @@
 ﻿using System;
-using System.Windows.Forms;
-using HuntAndPeck.NativeMethods;
+using HuntAndPeck.Models;
 
 namespace HuntAndPeck.Services.Interfaces
 {
-    internal class HotKey
-    {
-        public KeyModifier Modifier { get; set; }
-        public Keys Keys { get; set; }
-
-        /// <summary>
-        /// Id of the hot key registration
-        /// </summary>
-        public int RegistrationId { get; set; }
-    }
-
     /// <summary>
     /// Service for listening to global keyboard shortcuts
     /// </summary>
@@ -23,6 +11,10 @@ namespace HuntAndPeck.Services.Interfaces
         event EventHandler OnHotKeyActivated;
         event EventHandler OnTaskbarHotKeyActivated;
         event EventHandler OnDebugHotKeyActivated;
+
+        bool IsListening { get; }
+        void StartListening();
+        void StopListening();
 
         HotKey TaskbarHotKey { get; set; }
         HotKey HotKey { get; set; }

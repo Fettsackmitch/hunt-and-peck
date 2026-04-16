@@ -33,7 +33,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
-
   <ItemGroup>
     <Resource Include="Resources\originalbird.ico" />
   </ItemGroup>
