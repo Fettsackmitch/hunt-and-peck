@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="HuntAndPeck.Tests/HuntAndPeck.Tests.csproj" />
+  <Project Path="HuntAndPeck/HuntAndPeck.csproj" />
+  <Project Path="NativeMethods/NativeMethods.csproj" />
+</Solution>
