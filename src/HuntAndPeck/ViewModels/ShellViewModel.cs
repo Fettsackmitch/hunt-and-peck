@@ -59,7 +59,6 @@ namespace HuntAndPeck.ViewModels
             _keyListener.OnHotKeyActivated += _keyListener_OnHotKeyActivated;
             _keyListener.OnTaskbarHotKeyActivated += _keyListener_OnTaskbarHotKeyActivated;
             _keyListener.OnDebugHotKeyActivated += _keyListener_OnDebugHotKeyActivated;
-            _keyListener.StartListening();
         }
 
         public DelegateCommand ShowOptionsCommand { get; }
@@ -103,8 +102,11 @@ namespace HuntAndPeck.ViewModels
 
         public void ShowOptions()
         {
-            var vm = new OptionsViewModel();
             _keyListener.StopListening();
+            _keyListener.OnHotKeyActivated -= _keyListener_OnHotKeyActivated;
+            _keyListener.OnTaskbarHotKeyActivated -= _keyListener_OnTaskbarHotKeyActivated;
+            _keyListener.OnDebugHotKeyActivated -= _keyListener_OnDebugHotKeyActivated;
+            var vm = new OptionsViewModel();
             _showOptions(vm);
             InitHotKeys();
         }
