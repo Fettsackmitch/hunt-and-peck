@@ -4,17 +4,21 @@ Simple vimium/vimperator style navigation for Windows applications based on the 
 
 It works for any Windows program (excluding Modern UI apps :))
 
+## Demo
+
+![Demo](screenshots/demo.gif)
+
 ## Screenshots
 
-![ScreenShot](https://raw.github.com/zsims/hunt-n-peck/master/screenshots/explorer.png)
-![ScreenShot](https://raw.github.com/zsims/hunt-n-peck/master/screenshots/visual-studio.png)
+| Overlay | Options | Debug(outdated) 
+|---------|---------|----------------|
+| ![Overlay](screenshots/explorer.png) | ![Options](screenshots/options.png) | ![Debug](screenshots/visual-studio.png) |
 
 ## Installation
 
-
 ### Requirements
 - Windows OS
-- .NET Framework
+- [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0)
 
 ### Download & Setup
 
@@ -26,23 +30,29 @@ It works for any Windows program (excluding Modern UI apps :))
 
 ### Basic Usage
 
-1. Launch the executable
-2. With any window focused, press `Alt + ,`
-   - The tray can be highlighted with `Shift + Alt + ,`
-3. An overlay window will be displayed, type any of the hint characters you see
+1. Launch the executable — it runs as a system tray icon
+2. With any window focused, press `Alt + ,` to activate the overlay
+3. Letter labels appear on clickable elements — type the matching characters to invoke them
 
 ### Options & Configuration
 
-To access the options dialog, right-click the application icon in the system tray and select `Options`.
+Right-click the tray icon and select `Options` to open the settings dialog.
 
-#### Available Settings
+#### Hotkeys
 
-- **Font Size**: Adjust the size of hint labels (8-24pt) for better visibility
-- **Hotkeys**: Configure keyboard shortcuts for different modes:
-  - **Overlay HotKey**: Main activati on hotkey for standard windows (default: `Shift + Alt + ,`)
-  - **Taskbar HotKey**: Activation hotkey for taskbar elements (default: `Ctrl + ;`)
-  
-Hotkeys support various modifier combinations (Alt, Ctrl, Shift, Win) and can be customized to your preference.
+All hotkeys are fully customizable. To change a hotkey, click the corresponding text field in the **Keyboard** tab and press your desired key combination.
+
+| Mode | Default | Description |
+|------|---------|-------------|
+| Overlay | `Alt + ,` | Activate hints for the focused window |
+| Taskbar | `Alt + Shift + ,` | Activate hints for the taskbar |
+| Debug | `Ctrl + Shift + ,` | Activate debug overlay |
+
+Supported modifiers: `Alt`, `Ctrl`, `Shift`, `Win` (and combinations).
+
+#### Font Size
+
+Adjust the hint label size (8–24 pt) in the **FontSize** tab.
 
 ## Known Limitations
 
