@@ -1,6 +1,8 @@
 ﻿using HuntAndPeck.Properties;
 using System.ComponentModel;
 using HuntAndPeck.Models;
+using System;
+using Microsoft.Win32;
 
 namespace HuntAndPeck.ViewModels
 {
@@ -13,6 +15,7 @@ namespace HuntAndPeck.ViewModels
             HotKeyText = Settings.Default.HotKeyText;
             TaskbarHotKeyText = Settings.Default.TaskbarHotKeyText;
             DebugHotKeyText = Settings.Default.DebugHotKeyText;
+            _autostart = Settings.Default.Autostart;
             
             Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
         }
@@ -89,6 +92,32 @@ namespace HuntAndPeck.ViewModels
                     Settings.Default.DebugHotKeyText = hotKey.ToString();
                 }
             }
+        }
+
+        private bool _autostart;
+        public bool Autostart
+        {
+            get { return _autostart; }
+            set
+            {
+                if (_autostart != value)
+                {
+                    _autostart = value;
+                    OnPropertyChanged(nameof(Autostart));
+                    Settings.Default.Autostart = value;
+                    UpdateAutostartRegistry(value);
+                }
+            }
+        }
+
+        private void UpdateAutostartRegistry(bool enable)
+        {
+            using var key = Registry.CurrentUser.OpenSubKey(
+                @"Software\Microsoft\Windows\CurrentVersion\Run", true);
+            if (enable)
+                key?.SetValue("HuntAndPeck", $"\"{Environment.ProcessPath}\"");
+            else
+                key?.DeleteValue("HuntAndPeck", false);
         }
 
 

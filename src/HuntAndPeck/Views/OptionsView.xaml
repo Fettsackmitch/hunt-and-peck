@@ -5,13 +5,13 @@
         Title="OptionsView" Height="300" Width="400"
         WindowStartupLocation="CenterScreen">
     <TabControl TabStripPlacement="Left">
-        <TabItem Header="Overlay">
+        <TabItem Header="General">
             <TabItem.Content>
-                <Grid Margin="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                </Grid>
+                <StackPanel Margin="10" Orientation="Vertical" VerticalAlignment="Top">
+                    <CheckBox IsChecked="{Binding Autostart}" Margin="0,4,0,0">
+                        Start with Windows
+                    </CheckBox>
+                </StackPanel>
             </TabItem.Content>
         </TabItem>
         <TabItem Header="Keyboard">
